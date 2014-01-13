@@ -39,6 +39,7 @@ import starling.extensions.lightning.Lightning;
 import starling.extensions.lightning.LightningFadeType;
 import starling.extensions.lightning.LightningPool;
 import starling.filters.BlurFilter;
+import starling.filters.FragmentFilterMode;
 
 // http://blog.oaxoa.com/wp-content/examples/showExample.php?f=lightning_test_coil.swf&w=727&h=566
 
@@ -60,14 +61,21 @@ public final class Context extends Sprite {
 
     private var p:Point;
 
+    private var glowFilter:BlurFilter;
+
     private var debugLabel:TextField;
+
+    private var displayDriver:String;
 
     public function Context() {
         addEventListener(Event.ADDED_TO_STAGE, onAdded);
     }
 
     private function onAdded(event:Event):void {
+        displayDriver = Starling.current.context.driverInfo;
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
+        // set starling stage color
+        stage.color = 0x001A4D;
         // debug label
         const textFormat:TextFormat = new TextFormat("Arial", 10, 0xFFFFFF);
         debugLabel = new TextField();
@@ -91,16 +99,16 @@ public final class Context extends Sprite {
         addChild(ball);
         // dot1
         dot1 = new Shape();
-        dot1.graphics.beginFill(0xFFFFFF);
+        dot1.graphics.beginFill(COLOR);
         dot1.graphics.drawCircle(0, 0, 6);
         dot1.graphics.endFill();
-        dot1.alpha = .75;
+        //dot1.alpha = .75;
         dot1.x = 100;
         dot1.y = 100;
         addChild(dot1);
         // dot2
         dot2 = new Shape();
-        dot2.graphics.beginFill(0xFFFFFF);
+        dot2.graphics.beginFill(COLOR);
         dot2.graphics.drawCircle(0, 0, 3);
         dot2.graphics.endFill();
         dot2.x = 600;
@@ -117,7 +125,10 @@ public final class Context extends Sprite {
         ll.steps = 150;
         ll.alphaFadeType = LightningFadeType.TIP_TO_END;
         ll.childrenProbability = .3;
-        ll.filter = BlurFilter.createGlow(COLOR, 1, 8, 1);
+        glowFilter = new BlurFilter(4, 4, 2);
+        glowFilter.mode = FragmentFilterMode.ABOVE;
+        glowFilter.setUniformColor(true, COLOR, 1);
+        ll.filter = glowFilter;
         addChild(ll);
 
         p = new Point();
@@ -132,7 +143,7 @@ public final class Context extends Sprite {
     }
 
     private function onFrameEnter(event:Event):void {
-        debugLabel.text = "LightningPool size= " + LightningPool.getSize() + " | " + ll;
+        debugLabel.text = "LightningPool size= " + LightningPool.getSize() + " | " + ll + " | " + displayDriver;
         var rnd:Number = Math.random();
         if (rnd < .05) randomizePoint();
         var dx:Number = CX - ball.x;
@@ -142,6 +153,7 @@ public final class Context extends Sprite {
             dot2.visible = true;
             if (ll.childrenDetachedEnd) {
                 trace("CLEAR #1");
+                ll.filter = glowFilter;
                 ll.childrenDetachedEnd = false;
                 ll.alphaFadeType = LightningFadeType.GENERATION;
                 ll.disposeAllChildren();
@@ -153,6 +165,7 @@ public final class Context extends Sprite {
             dot2.visible = false;
             if (!ll.childrenDetachedEnd) {
                 trace("CLEAR #2");
+                ll.filter = null;
                 ll.childrenDetachedEnd = true;
                 ll.alphaFadeType = LightningFadeType.TIP_TO_END;
                 ll.disposeAllChildren();

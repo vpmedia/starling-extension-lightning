@@ -299,6 +299,7 @@ public class Lightning extends starling.display.Sprite {
      */
     internal function setupDefaults():void {
         // display list
+        touchable = false;
         if (!_canvas) {
             _canvas = new Shape();
             addChild(_canvas);
@@ -429,9 +430,7 @@ public class Lightning extends starling.display.Sprite {
      * Removes all child Lightning objects.
      */
     public function disposeAllChildren():void {
-        while (_childHolder.numChildren) {
-            _childHolder.removeChildAt(0);
-        }
+        _childHolder.removeChildren();
     }
 
     /**

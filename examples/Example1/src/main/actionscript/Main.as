@@ -28,6 +28,8 @@ import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageQuality;
 import flash.display.StageScaleMode;
+import flash.display3D.Context3DProfile;
+import flash.display3D.Context3DRenderMode;
 import flash.events.Event;
 
 import starling.core.Starling;
@@ -49,8 +51,11 @@ public final class Main extends Sprite {
         stage.quality = StageQuality.MEDIUM;
         stage.frameRate = 60;
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
-        starling = new Starling(Context, stage);
+        starling = new Starling(Context, stage, null, null, Context3DRenderMode.AUTO, Context3DProfile.BASELINE);
         starling.showStats = true;
+        starling.enableErrorChecking = false;
+        starling.simulateMultitouch = false;
+        starling.antiAliasing = 0;
         starling.start();
     }
 
