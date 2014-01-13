@@ -25,6 +25,9 @@
 package {
 
 import flash.display.Sprite;
+import flash.display.StageAlign;
+import flash.display.StageQuality;
+import flash.display.StageScaleMode;
 import flash.events.Event;
 
 import starling.core.Starling;
@@ -41,6 +44,10 @@ public final class Main extends Sprite {
     }
 
     private function onAdded(event:Event):void {
+        stage.align = StageAlign.TOP_LEFT;
+        stage.scaleMode = StageScaleMode.NO_SCALE;
+        stage.quality = StageQuality.MEDIUM;
+        stage.frameRate = 60;
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
         starling = new Starling(Context, stage);
         starling.showStats = true;

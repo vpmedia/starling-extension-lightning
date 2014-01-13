@@ -24,16 +24,17 @@
  */
 package {
 
-import flash.filters.GlowFilter;
 import flash.geom.Point;
 import flash.text.TextField;
 import flash.text.TextFormat;
 
 import starling.core.Starling;
-import starling.display.BlendMode;
 import starling.display.Shape;
 import starling.display.Sprite;
 import starling.events.Event;
+import starling.events.Touch;
+import starling.events.TouchEvent;
+import starling.events.TouchPhase;
 import starling.extensions.lightning.Lightning;
 import starling.extensions.lightning.LightningFadeType;
 import starling.extensions.lightning.LightningPool;
@@ -107,7 +108,7 @@ public final class Context extends Sprite {
         addChild(dot2);
         // lightning
         ll = new Lightning(COLOR, 2);
-        ll.blendMode = BlendMode.ADD;
+        //ll.blendMode = BlendMode.ADD;
         ll.childrenDetachedEnd = true;
         ll.childrenLifeSpanMin = .1;
         ll.childrenLifeSpanMax = 2;
@@ -116,14 +117,13 @@ public final class Context extends Sprite {
         ll.steps = 150;
         ll.alphaFadeType = LightningFadeType.TIP_TO_END;
         ll.childrenProbability = .3;
-        ll.filter = BlurFilter.createGlow(COLOR);
+        ll.filter = BlurFilter.createGlow(COLOR, 1, 8, 1);
         addChild(ll);
 
         p = new Point();
         randomizePoint();
 
-       // ball.addEventListener(Event.MOUSE_DOWN, onMouseDown);
-      //  ball.addEventListener(Event.MOUSE_UP, onMouseUp);
+        ball.addEventListener(TouchEvent.TOUCH, onTouch);
         addEventListener(Event.ENTER_FRAME, onFrameEnter);
 
         // Debug
@@ -178,12 +178,12 @@ public final class Context extends Sprite {
         p.y = CY + Math.sin(angle) * dist;
     }
 
-    private function onMouseDown(event:Event):void {
-       // ball.startDrag();
-    }
-
-    private function onMouseUp(event:Event):void {
-       // ball.stopDrag();
+    private function onTouch(e:TouchEvent):void {
+        var touch:Touch = e.getTouch(stage);
+        if (touch.phase == TouchPhase.MOVED) {
+            ball.x = touch.globalX;
+            ball.y = touch.globalY;
+        }
     }
 }
 }
