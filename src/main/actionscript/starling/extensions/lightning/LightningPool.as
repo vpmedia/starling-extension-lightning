@@ -50,12 +50,12 @@ public final class LightningPool {
     /**
      * @private
      */
-    private static var POOL:Vector.<Lightning>;
+    private static var POOL:Vector.<LightningBase>;
 
     /**
      * @private
      */
-    private static var CURRENT_ITEM:Lightning;
+    private static var CURRENT_ITEM:LightningBase;
 
     /**
      * @private
@@ -70,7 +70,7 @@ public final class LightningPool {
         MAX_VALUE = maxPoolSize;
         GROWTH_VALUE = growthValue;
         COUNTER = maxPoolSize;
-        POOL = new Vector.<Lightning>(MAX_VALUE);
+        POOL = new Vector.<LightningBase>(MAX_VALUE);
         // Pre-create objects
         var i:uint = maxPoolSize;
         while (--i > -1)
@@ -82,7 +82,7 @@ public final class LightningPool {
     /**
      * Get Lightning from pool
      */
-    public static function getLightning():Lightning {
+    public static function getLightning():LightningBase {
         // return top element if existing
         if (COUNTER > 0)
             return CURRENT_ITEM = POOL[--COUNTER];
@@ -99,7 +99,7 @@ public final class LightningPool {
     /**
      * Put Lightning to pool
      */
-    public static function putLightning(disposedLightning:Lightning):void {
+    public static function putLightning(disposedLightning:LightningBase):void {
         //trace("LightningPool::putLightning: " + disposedLightning);
         POOL[COUNTER++] = disposedLightning;
     }
