@@ -21,14 +21,14 @@ subprojects {
     type = 'swf'
     frameworkLinkage = 'none'
     
-    playerVersion = '11.9'  
+    playerVersion = '12.0'  
     mainClass = 'Main.as' 
 
     additionalCompilerOptions = [
         '-debug=true',
         '-optimize=true',
-        '-target-player=11.9',
-        '-swf-version=22'
+        '-target-player=12.0',
+        '-swf-version=23'
     ]
 
     configurations {
