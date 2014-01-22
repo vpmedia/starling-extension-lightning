@@ -2,7 +2,6 @@
  The MIT License (MIT)
 
  Copyright (c) 2008 Pierluigi Pesenti (blog.oaxoa.com)
- Contributor 2014 Andras Csizmadia (www.vpmedia.eu)
 
  Permission is hereby granted, free of charge, to any person obtaining a copy of
  this software and associated documentation files (the "Software"), to deal in
@@ -29,22 +28,20 @@ import flash.events.TimerEvent;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.utils.Timer;
-import starling.display.graphics.Stroke;
 
-import starling.display.Shape;
 import starling.display.Sprite;
+import starling.display.graphics.Stroke;
 import starling.events.Event;
 
 /**
- * Lightning Class
- * AS3 Class to mimic a real lightning or electric discharge
+ * Lightning Base Class
  *
- * @author        Pierluigi Pesenti (blog.oaxoa.com)
- * @contributor   Andras Csizmadia (www.vpmedia.eu)
- * @version        0.6.0
+ * @author Pierluigi Pesenti (blog.oaxoa.com)
+ * @contributor Andras Csizmadia (www.vpmedia.eu)
+ * @contributor IonSwitz (www.github.com/IonSwitz)
  *
  */
-public class LightningBase extends starling.display.Sprite {
+public class LightningBase extends Sprite {
 
     //----------------------------------
     //  Public Properties
@@ -181,8 +178,8 @@ public class LightningBase extends starling.display.Sprite {
     //----------------------------------
 
     /** @private */
-   // protected var _canvas:Shape;
-	
+    // protected var _canvas:Shape;
+
 
     /** @private */
     private var _childHolder:Sprite;
@@ -302,11 +299,11 @@ public class LightningBase extends starling.display.Sprite {
     internal function setupDefaults():void {
         // display list
         touchable = false;
-       /* if (!_canvas) {
-            _canvas = new Shape();
-            addChild(_canvas);
-        }*/
-        if(!_childHolder) {
+        /* if (!_canvas) {
+         _canvas = new Shape();
+         addChild(_canvas);
+         }*/
+        if (!_childHolder) {
             _childHolder = new Sprite();
             addChild(_childHolder);
         }
@@ -510,7 +507,7 @@ public class LightningBase extends starling.display.Sprite {
      */
     public function updateBase(stroke:Stroke):void {
         // start update process
-	    _dx = endX - startX;
+        _dx = endX - startX;
         _dy = endY - startY;
         _len = Math.sqrt(_dx * _dx + _dy * _dy);
         _sOffsets[0].x += (_steps / 100) * _speed;
@@ -561,11 +558,11 @@ public class LightningBase extends starling.display.Sprite {
      * TBD
      */
     public function renderLightning(stroke:Stroke):void {
-        
-		// calculate angle
+
+        // calculate angle
         _angle = Math.atan2(endY - startY, endX - startX);
         // iterate
-		
+
         for (var i:uint = 0; i < _steps; i++) {
             // get current position
             const currentPosition:Number = 1 / _steps * (_steps - i)
@@ -587,12 +584,11 @@ public class LightningBase extends starling.display.Sprite {
             _bOffsetY = Math.cos(_angle) * _bOffset;
             _tx = startX + _dx / (_steps - 1) * i + _sOffsetX + _bOffsetX;
             _ty = startY + _dy / (_steps - 1) * i - _sOffsetY - _bOffsetY;
-            if (i == 0)
-			{
-        		stroke.addDegenerates(_tx, _ty);
-			}
-        	stroke.addVertex(_tx, _ty, relThickness, _color, relAlpha, _color, relAlpha);
-			
+            if (i == 0) {
+                stroke.addDegenerates(_tx, _ty);
+            }
+            stroke.addVertex(_tx, _ty, relThickness, _color, relAlpha, _color, relAlpha);
+
             // iterate and draw sub-lines
             const n:uint = _childHolder.numChildren;
             for (var j:uint = 0; j < n; j++) {
