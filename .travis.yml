@@ -8,4 +8,4 @@ before_install:
     - brew install gradle
     
 script:
-    - gradle
+    - gradle build

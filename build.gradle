@@ -7,19 +7,13 @@ buildscript {
     }
 }
 
-allprojects {
-    apply plugin: 'gradlefx'
-    version = '1.0-SNAPSHOT'
-    repositories {
-        mavenCentral()
-        maven {
-            name 'yoolab-releases'
-            url "http://projects.yoolab.org/maven/content/repositories/releases"
-        }
-        maven {
-            name 'yoolab-snapshots'
-            url "http://projects.yoolab.org/maven/content/repositories/snapshots"
-        }
-    }
-    type = 'swc'    
+apply plugin: 'gradlefx'
+version = '1.0-SNAPSHOT'
+ 
+dependencies {
+test files(project.file('src/test/libs/flexunit/flexUnitTasks-4.1.0-9.jar').absolutePath,
+           project.file('src/test/libs/flexunit/ASProject/flexunit-4.1.0-9-as3_4.1.0.16076.swc').absolutePath,
+           project.file('src/test/libs/flexunit/Common/flexunit-cilistener-4.1.0-9-4.1.0.16076.swc').absolutePath)
 }
+
+type = 'swc'
