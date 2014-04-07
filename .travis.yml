@@ -1,2 +1,7 @@
+notifications:
+    email: false
+
 language: objective-c
-script: gradle
+
+script:
+    - gradle
