@@ -6,6 +6,7 @@ language: objective-c
 before_install:
     - brew update
     - brew install gradle
+    - brew install adobe-air-sdk
     
 script:
     - gradle build
