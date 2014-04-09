@@ -8,7 +8,7 @@ before_install:
     - brew install gradle &>brew-gradle.log
     
 script:
-    - gradle build &>build.log
+    - gradle build 
 
 after_script:
     - ls
