@@ -16,4 +16,26 @@ test files(project.file('src/test/libs/flexunit/flexUnitTasks-4.1.0-9.jar').abso
            project.file('src/test/libs/flexunit/Common/flexunit-cilistener-4.1.0-9-4.1.0.16076.swc').absolutePath)
 }
 
+repositories {
+    ivy {
+        name 'Apache'
+        artifactPattern 'http://apache.cu.be/flex/[revision]/binaries/[module]-[revision]-bin.[ext]'
+    }
+    
+    ivy {
+        name 'Adobe Air SDK'
+        artifactPattern 'http://airdownload.adobe.com/air/mac/download/[revision]/[module].[ext]'
+    }
+}
+
+dependencies {
+    flexSDK group: 'org.apache', name: 'apache-flex-sdk', version: '4.12.0', ext: 'tar.gz'
+    airSDK group: 'com.adobe', name: 'AIRSDK_Compiler', version: 'latest', ext: 'tbz2'
+}
+
+sdkAutoInstall {
+    showPrompts = false
+}
+
+
 type = 'swc'

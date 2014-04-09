@@ -4,9 +4,11 @@ notifications:
 language: objective-c
 
 before_install:
-    - brew update
-    - brew install gradle
-    - brew install adobe-air-sdk
+    - brew update &>brew-update.log
+    - brew install gradle &>brew-gradle.log
     
 script:
-    - gradle build
+    - gradle build &>build.log
+
+after_script:
+    - ls
