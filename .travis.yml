@@ -1,7 +1,8 @@
 notifications:
     email: false
 
-git: depth: 1
+git: 
+    depth: 1
 
 language: objective-c
 
