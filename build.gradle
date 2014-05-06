@@ -35,9 +35,17 @@ dependencies {
     airSDK group: 'com.adobe', name: 'AIRSDK_Compiler', version: 'latest', ext: 'tbz2'
 }
 
+
+dependencies {
+    merged files(project.file('src/main/libs/starling.swc').absolutePath,project.file('src/main/libs/Starling-Extension-Graphics.swc').absolutePath)
+}
+
+
 sdkAutoInstall {
     showPrompts = false
 }
 
+
+defaultTasks 'clean','build'
 
 type = 'swc'
