@@ -40,6 +40,9 @@
                <pathelement location="${env.AIR_HOME}/lib/compiler.jar"/>
             </classpath>
             <arg line="-directory=false" />
+            <arg line="-debug=true" />
+            <arg line="-target-player=13.0" />
+            <arg line="-swf-version=24" />
             <arg line="-load-config=${env.AIR_HOME}/frameworks/flex-config.xml" />
             <arg line="-include-sources+=${basedir}/src/main/actionscript" />
             <arg line="-output=${basedir}/build/Main.swc" />
