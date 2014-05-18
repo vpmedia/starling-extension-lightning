@@ -45,6 +45,7 @@
             <arg line="-swf-version=24" />
             <arg line="-load-config=${env.AIR_HOME}/frameworks/flex-config.xml" />
             <arg line="-include-sources+=${basedir}/src/main/actionscript" />
+            <arg line="-library-path+=${basedir}/src/main/libs" />
             <arg line="-output=${basedir}/build/Main.swc" />
         </java>
     </target>
