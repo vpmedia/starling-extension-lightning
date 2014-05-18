@@ -36,8 +36,8 @@ before_install:
 
 before_script:
     - mkdir ./airsdk
-    - set AIR_HOME=./airsdk
-    - set FLEX_HOME=./airsdk
+    - "export AIR_HOME=./airsdk"
+    - "export FLEX_HOME=./airsdk"
     - cd ./airsdk
     - wget -i ./../install.txt
     - tar xjf AIRSDK_Compiler.tbz2
