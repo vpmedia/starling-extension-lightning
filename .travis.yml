@@ -42,5 +42,4 @@ before_script:
     
 script:
     - "export AIR_HOME=./airsdk"
-    - "export FLEX_HOME=./airsdk"
     - ant
