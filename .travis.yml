@@ -32,16 +32,15 @@ language: objective-c
 before_install:
     - brew update
     - brew install ant
-    - brew install gradle
 
 before_script:
     - mkdir ./airsdk
-    - "export AIR_HOME=./airsdk"
-    - "export FLEX_HOME=./airsdk"
     - cd ./airsdk
     - wget -i ./../install.txt
     - tar xjf AIRSDK_Compiler.tbz2
     - cd ..
     
 script:
-    - gradle build
+    - "export AIR_HOME=./airsdk"
+    - "export FLEX_HOME=./airsdk"
+    - ant
