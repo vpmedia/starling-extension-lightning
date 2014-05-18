@@ -33,7 +33,15 @@ before_install:
     - brew update
     - brew install ant
     - brew install gradle
-    - brew install adobe-air-sdk
+
+before_script:
+    - mkdir ./airsdk
+    - set AIR_HOME=./airsdk
+    - set FLEX_HOME=./airsdk
+    - cd ./airsdk
+    - wget -i ./../install.txt
+    - tar xjf AIRSDK_Compiler.tbz2
+    - cd ..
     
 script:
     - gradle build
