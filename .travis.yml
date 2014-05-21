@@ -31,8 +31,6 @@ language: objective-c
 
 before_install:
     - brew update
-    - brew upgrade
-    - brew tap homebrew/dupes
     - brew install ant
 
 before_script:
