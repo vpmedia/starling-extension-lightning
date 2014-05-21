@@ -1,1 +1,0 @@
-http://airdownload.adobe.com/air/mac/download/latest/AIRSDK_Compiler.tbz2

@@ -29,17 +29,11 @@ git:
 
 language: objective-c
 
-before_install:
+before_script:
     - brew update
     - brew install ant
-
-before_script:
-    - mkdir ./airsdk
-    - cd ./airsdk
-    - wget -i ./../install.txt
-    - tar xjf AIRSDK_Compiler.tbz2
-    - cd ..
+    - brew install adobe-air-sdk
+    - "export AIR_HOME=/usr/local/Cellar/adobe-air-sdk/13.0/libexec"
     
 script:
-    - "export AIR_HOME=./airsdk"
     - ant
