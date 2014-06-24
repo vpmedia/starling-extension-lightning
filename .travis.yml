@@ -33,7 +33,7 @@ before_script:
     - brew update
     - brew install ant
     - brew install adobe-air-sdk
-    - "export AIR_HOME=/usr/local/Cellar/adobe-air-sdk/13.0/libexec"
+    - "export AIR_HOME=/usr/local/opt/adobe-air-sdk/libexec"
     
 script:
     - ant
