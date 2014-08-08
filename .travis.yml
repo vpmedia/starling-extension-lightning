@@ -23,7 +23,6 @@
 
 # Purpose: Flash SDK Template for Travis-CI (Ant and Gradle dual build)
 # Author: Andras Csizmadia (www.github.com/vpmedia)
-# Contributors: Honza Břečka (www.github.com/johnikx)
 # Version: 1.0.0
 
 git: 
@@ -31,9 +30,10 @@ git:
 
 language: objective-c
 
+env:
+    - TERM=dumb
+
 before_script:
-    # Setup terminal type for Gradle
-    - export TERM=dump
     # Update Brew silently
     - brew update >brew-update.log
     # Install Brew Packages silently
