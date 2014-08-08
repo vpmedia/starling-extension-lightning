@@ -31,6 +31,10 @@ git:
 
 language: objective-c
 
+# Beautify Gradle console output
+env:
+   - TERM=dumb
+
 before_script:
     # Update Brew silently
     - brew update >brew-update.log
