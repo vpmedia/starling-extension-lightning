@@ -31,10 +31,9 @@ git:
 
 language: objective-c
 
-env:
-    - TERM=DUMB
-
 before_script:
+    # Setup terminal type for Gradle
+    - export TERM=dump
     # Update Brew silently
     - brew update >brew-update.log
     # Install Brew Packages silently
