@@ -25,9 +25,6 @@
 // =END MIT LICENSE
 //
 
-// author: Andras Csizmadia
-// see: http://evgeny-goldin.com/wiki/Gradle
-
 // needed for deploying
 apply plugin: 'maven'
 
