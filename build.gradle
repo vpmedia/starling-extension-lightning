@@ -79,8 +79,8 @@ configurations.antClassPath.each { File f ->
 //  SDK
 //----------------------------------
 
-String AIR_HOME = System.getenv('AIR_HOME')
-String FLEX_HOME = System.getenv('FLEX_HOME')
+def AIR_HOME = System.getenv('AIR_HOME')
+def FLEX_HOME = System.getenv('FLEX_HOME')
 ant.FLEX_HOME = "${FLEX_HOME}"
 
 //----------------------------------
