@@ -38,7 +38,7 @@ before_script:
     - brew update >brew-update.log
     # Install Brew Packages silently
     - brew tap homebrew/binary
-    - brew install gradle adobe-air-sdk >brew-install.log
+    - brew install gradle adobe-air-sdk
     # Adobe Flash Player for CLI
     - brew install caskroom/cask/brew-cask
     - brew cask install flash-player-debugger
